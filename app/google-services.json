@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "809380140948",
+    "firebase_url": "https://demoregistroapp.firebaseio.com",
+    "project_id": "demoregistroapp",
+    "storage_bucket": "demoregistroapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809380140948:android:8a59048661ff2b5a",
+        "android_client_info": {
+          "package_name": "com.almeyda.soft.demoregistrpapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809380140948-iieeu0dkb0o3psnn03450dsd36p8cp6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.almeyda.soft.demoregistrpapp",
+            "certificate_hash": "b600c130be1a151e46dcebe007a3fd89653b5a6f"
+          }
+        },
+        {
+          "client_id": "809380140948-hdq488k4s5ti629umttd3ujoi7g9dql7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChtz9wEN1iud3W-ybeimq3YM954M-wDZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809380140948-hdq488k4s5ti629umttd3ujoi7g9dql7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

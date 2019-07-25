@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterClientActivity">
+
+
+    <TextView
+        android:id="@+id/tvTitleScreen"
+        style="@style/styleTitleScreen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/text_title_register_client"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/text_hint_name"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleScreen" />
+
+    <EditText
+        android:id="@+id/edtLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/text_hint_lastname"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"
+        app:layout_constraintTop_toBottomOf="@+id/edtName" />
+
+    <EditText
+        android:id="@+id/edtAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/text_hint_edad"
+        android:imeOptions="actionDone"
+        android:inputType="number|textPersonName"
+        android:maxLength="2"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"
+        app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
+
+    <TextView
+        android:id="@+id/tvLabelDateBirthDay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_date_birthday"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@id/tvDateBirthday"
+        app:layout_constraintTop_toBottomOf="@id/edtAge" />
+
+    <TextView
+        android:id="@+id/tvDateBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="right"
+        android:text="@string/text_select"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"
+        app:layout_constraintTop_toBottomOf="@+id/edtAge" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelinerigth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/text_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDateBirthday" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUsers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineleft"
+        app:layout_constraintRight_toLeftOf="@id/guidelinerigth"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

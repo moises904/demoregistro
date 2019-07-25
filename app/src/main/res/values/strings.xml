@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">DemoRegistrpApp</string>
+    <string name="text_register_app">Demo Registro App</string>
+
+    <string name="text_login">Validar telefono</string>
+    <string name="text_hint_name">Nombre</string>
+    <string name="text_hint_lastname">Apellidos</string>
+    <string name="text_hint_edad">Edad</string>
+    <string name="text_date_birthday">Fecha Cumpleaños</string>
+    <string name="text_datebirthday">Cumpleaños</string>
+    <string name="text_select">Seleccionar</string>
+    <string name="text_title_register_client">Creacion de Cliente</string>
+    <string name="text_input_phonenumber">Ingresar numero de telefono  (Ejm:986633362)</string>
+    <string name="text_register">Registrar</string>
+    <string name="title_activity_create_user_client">Create Cliente</string>
+
+    <string name="message_input_phonenumber">"Debes ingresar un número de telefono."</string>
+    <string name="message_phone_number_invalid">La validación del numero de telefono, ha fallado.</string>
+    <string name="message_authenticate_failed">La Autenticación con el numero de telefono, ha fallado.</string>
+
+    <string name="message_register_incompleted">Debes ingresar todos los campos.</string>
+</resources>
