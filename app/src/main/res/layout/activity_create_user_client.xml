@@ -51,7 +51,7 @@
         android:ems="10"
         android:hint="@string/text_hint_edad"
         android:imeOptions="actionDone"
-        android:inputType="number|textPersonName"
+        android:inputType="number"
         android:maxLength="2"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineleft"
         app:layout_constraintRight_toLeftOf="@+id/guidelinerigth"

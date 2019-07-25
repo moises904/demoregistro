@@ -2,11 +2,11 @@ package com.almeyda.soft.demoregistrpapp;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,11 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.almeyda.soft.demoregistrpapp.adapter.ClientAdapter;
 import com.almeyda.soft.demoregistrpapp.controller.RealTimeDBManager;
+import com.almeyda.soft.demoregistrpapp.interfaces.OnSelectResult;
 import com.almeyda.soft.demoregistrpapp.model.User;
 import com.almeyda.soft.demoregistrpapp.util.MessageUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -39,12 +41,18 @@ public class RegisterClientActivity extends AppCompatActivity {
     private TextView tvDateBirthday;
     private int mYear, mMonth, mDay;
     private RealTimeDBManager realTimeDBManager;
-
+    private List<User> lstClientes=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeView();
         initializeData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUsersRegistered();
     }
 
     private void initializeView(){
@@ -56,18 +64,10 @@ public class RegisterClientActivity extends AppCompatActivity {
         tvDateBirthday = findViewById(R.id.tvDateBirthday);
         rvUsers = findViewById(R.id.rvUsers);
 
-        edtAge.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if(i == EditorInfo.IME_ACTION_DONE){
-                    btnRegister.performClick();
-                }
-                return false;
-            }
-        });
         tvDateBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard();
                 showDatePickers();
             }
         });
@@ -87,7 +87,7 @@ public class RegisterClientActivity extends AppCompatActivity {
 
     private void initializeData(){
         realTimeDBManager = new RealTimeDBManager();
-
+        lstClientes = new ArrayList<>();
     }
 
     private void showDatePickers(){
@@ -148,23 +148,42 @@ public class RegisterClientActivity extends AppCompatActivity {
         tvDateBirthday.setText(getString(R.string.text_select));
     }
 
+    private void hideKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
     private boolean validateFields(){
 
         return edtName.getText().toString().trim().length() > 0 &&
                 edtLastName.getText().toString().trim().length() > 0 &&
                 edtAge.getText().toString().trim().length() > 0 &&
-                tvDateBirthday.getText().toString().trim().length() > 0;
+                tvDateBirthday.getText().toString().trim().length() > 0 &&
+                !tvDateBirthday.getText().toString().equals(getString(R.string.text_select));
 
     }
 
     private void loadUsersRegistered() {
 
-        List<User> lstClientes = realTimeDBManager.getClients();
-        Log.i(TAG, "Hay "+lstClientes.size());
-        ClientAdapter adapter = new ClientAdapter(lstClientes);
-        rvUsers.setHasFixedSize(true);
-        rvUsers.setLayoutManager(new LinearLayoutManager(this));
-        rvUsers.setAdapter(adapter);
+        OnSelectResult onSelectResult = new OnSelectResult() {
+            @Override
+            public void onSelectResult(List<User> lstUsers) {
+                lstClientes = lstUsers;
+                if(lstClientes!=null) {
+                    Log.i(TAG, "Hay " + lstClientes.size());
+                    ClientAdapter adapter = new ClientAdapter(lstClientes);
+                    rvUsers.setHasFixedSize(true);
+                    rvUsers.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    rvUsers.setAdapter(adapter);
+                }
+            }
+        };
+
+        realTimeDBManager.getClients(onSelectResult);
+
     }
 
 

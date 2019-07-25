@@ -1,7 +1,7 @@
 package com.almeyda.soft.demoregistrpapp.controller;
 
-import android.util.Log;
 
+import com.almeyda.soft.demoregistrpapp.interfaces.OnSelectResult;
 import com.almeyda.soft.demoregistrpapp.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,21 +46,25 @@ public class RealTimeDBManager {
 
     }
 
-    public List<User> getClients(){
+    public void getClients(final OnSelectResult onSelectResult){
 
         final List<User> listClients = new ArrayList<>();
-        Query query = mDatabase.child(USUARIOS);
+        Query query = mDatabase.limitToFirst(50);
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<User> list = new ArrayList<User>();
 
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    Log.i("DataBase",child.getKey());
-                    list.add(child.getValue(User.class));
+                    HashMap<String,String> hm = (HashMap<String, String>) child.getValue();
+                    User user = new User();
+                    user.setFirstName(hm.get(FIELD_NAME));
+                    user.setLastName(hm.get(FIELD_LAST_NAME));
+                    user.setAge(hm.get(FIELD_AGE));
+                    user.setDateBirthday(hm.get(FIELD_DATE_BIRTHDAY));
+                    listClients.add(user);
                 }
-
-                listClients.addAll(list);
+                onSelectResult.onSelectResult(listClients);
             }
 
             @Override
@@ -68,6 +72,7 @@ public class RealTimeDBManager {
 
             }
         });
-        return listClients;
+
+
     }
 }

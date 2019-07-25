@@ -33,7 +33,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final User user = lstUsers.get(position);
-        holder.tvClient.setText(user.getFirstName() + " "+user.getLastName());
+        holder.tvClient.setText(user.getFirstName() + ", "+user.getLastName());
     }
 
     @Override
