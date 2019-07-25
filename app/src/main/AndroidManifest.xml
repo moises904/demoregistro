@@ -12,7 +12,7 @@
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="whateverString"
         >
-        <activity android:name=".RegisterClientActivity"
+        <activity android:name=".LoginActivity"
             android:label="@string/title_activity_create_user_client">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterClientActivity"/>
 
     </application>
 
